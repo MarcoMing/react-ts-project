@@ -1,0 +1,59 @@
+$primary-color: white;
+$bg: black;
+h1 {
+  color: $primary-color;
+  background-color: $bg;
+}
+
+
+.clock{
+  width: 200px;
+  height: 200px;
+  border: 1px solid #899;
+  border-radius: 50%;
+  position: relative;
+
+  .pointer{
+    width: 2px;
+    height: 10px;
+    background: #899;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  @for $num from 1 through 12 {
+    .pointer:nth-child(#{$num}){
+      transform: rotate((360deg/12)*$num) translateY(-96px);
+    }
+  }
+}
+
+@mixin btn{
+  color: $primary-color;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  background-color: #000;
+}
+
+.btnTest{
+  @include btn;
+}
+
+@function px2rem($value, $base: 75) {
+  @return ($value / $base) * 1rem;
+}
+
+
+@mixin font-dpr($font-size){
+    font-size: $font-size;
+    [data-dpr="2"] & {
+        font-size: $font-size * 2;
+    }
+    [data-dpr="3"] & {
+        font-size: $font-size * 3;
+    }
+}
